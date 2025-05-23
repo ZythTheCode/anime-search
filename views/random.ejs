@@ -1,0 +1,58 @@
+<div class="container">
+    <div class="card title">
+        <h1>
+            <%= title %>
+        </h1>
+    </div>
+    <div class="card image">
+
+        <img src="<%= image %>" class="img-fluid rounded mx-auto d-block anime-img" alt="<%= title %>" width="300">
+    </div>
+    <div class="card info">
+        <p><span class="key">Type: </span>
+            <%= type %>
+        </p>
+        <p><span class="key">No. of episodes:</span>
+            <%= num_ep %>
+        </p>
+        <p><span class="key">Duration: </span>
+            <%= duration %>
+        </p>
+        <p><span class="key">Aired:</span>
+            <%= aired %>
+        </p>
+        <p><span class="key">Status:</span>
+            <%= status %>
+        </p>
+        <p><span class="key">Ratings:</span>
+            <% if (ratings !==null ){ %>
+                <%= ratings %>
+                    <% } else { %>
+                        N/A
+                        <% } %>
+        </p>
+        <p><span class="key">Genre:</span>
+            <% if (genre.length> 0 ){ %>
+                <% genre.forEach((element, index)=> { %>
+                    <%= element["name"] %>
+                        <%= index+1 !==genre.length ? "," : "" %>
+                            <% }) %>
+                                <% } else { %>
+                                    N/A
+                                    <% } %>
+
+
+        </p>
+
+
+    </div>
+    <div class="card desc">
+        <p>
+            <% if (desc !==null ){ %>
+                <%= desc %>
+                    <% } else { %>
+                        No description
+                        <% } %>
+        </p>
+    </div>
+</div>
