@@ -1,0 +1,11 @@
+<div class="search-container">
+    <% searchData.forEach((anime,index)=> { %>
+        <div class="anime-card">
+            <img src="<%= searchData[index].images.jpg.image_url %> " alt=" <%= anime.title %> ">
+            <p>
+                <%= anime.title %>
+            </p>
+        </div>
+        <% }) %>
+
+</div>

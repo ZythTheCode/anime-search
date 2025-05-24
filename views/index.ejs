@@ -1,8 +1,11 @@
 <%- include('header.ejs') %>
     <main>
-        <% if(locals.randomData){%>
+        <% if(locals.randData){%>
             <%- include('random.ejs') %>
                 <% } %>
+                    <% if(locals.searchData) { %>
+                        <%- include('search.ejs') %>
+                            <% } %>
     </main>
 
     <%- include('footer.ejs') %>
