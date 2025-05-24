@@ -51,6 +51,20 @@ app.post("/search", async(req,res) => {
     }
     
 })
+app.post("/search", async(req,res) => {
+    const queryAnime = req.body.search;
+    const page = req.body.page;
+    try {
+        const searchData = await axios.get(API_URL + "/anime" + `?q=${queryAnime}&page=${page}`);
+        console.log(searchData.data.data);
+        res.render("index.ejs", {
+            searchData : searchData.data.data
+    })
+    } catch (error) {
+        console.log(error.message)
+    }
+    
+})
 
 
 app.listen(port, () => {

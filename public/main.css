@@ -27,7 +27,12 @@ nav {
     justify-content: space-between;
     align-items: center;
     background-color: #F75A5A;
+    position: fixed;
+    z-index: 1;
+}
 
+#random {
+    margin-top: 3rem;
 }
 
 main {
@@ -100,4 +105,37 @@ footer {
     margin-top: 20px;
     position: fixed;
     bottom: 0;
+}
+
+.search-container {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0 1rem;
+    margin-bottom: 3rem;
+}
+
+.anime-card{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    transition: 0.5s transform ease ;
+}
+.anime-card:hover, .anime-card:focus{
+    background-color: rgb(215, 98, 29);
+    border: 1px orange solid;
+    font-weight: bold;
+    box-shadow: 5px 14px 135px -32px rgba(255,198,0,0.75);
+-webkit-box-shadow: 5px 14px 135px -32px rgba(255,198,0,0.75);
+-moz-box-shadow: 5px 14px 135px -32px rgba(255,198,0,0.75);
+    transform: scale(1.01);
+}
+
+.anime-card img {
+    height: 330px;
+    width: 100%;
 }
