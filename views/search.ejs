@@ -1,19 +1,70 @@
 <div class="search-container">
-    <% searchData.forEach((anime,index)=> { %>
-        <div class="card anime-card" style="width: 18rem;">
+    <% if(searchData.length !==0 ){ %>
+        <% searchData.forEach((anime,index)=> { %>
             <form action="/anime" method="post">
-                <input type="hidden" name="animeID" value="searchData.mal_id">
-                <button type="submit" class="card anime-card" style="width: 18rem;">
-                    <img src="<%= searchData[index].images.jpg.image_url %> " class="card-img-top"
-                        alt=" <%= anime.title %> ">
-                    <div class="card-body anime-title">
-                        <p class="card-text">
-                            <%= anime.title %>
-                        </p>
-                    </div>
-        </div>
-        </button>
-        </form>
-        <% }) %>
+                <input type="hidden" name="animeId" value="<%= searchData[index].mal_id %> ">
+                <div class="card anime-card" style="width: 18rem;">
 
+                    <button type="submit" class="card anime-card" style="width: 18rem;">
+                        <img src="<%= searchData[index].images.jpg.image_url %> " class="card-img-top"
+                            alt=" <%= anime.title %> ">
+                        <div class="card-body anime-title">
+                            <p class="card-text">
+                                <%= anime.title %>
+                            </p>
+                        </div>
+                </div>
+                </button>
+            </form>
+            <% }) %>
+
+
+                <% } else { %>
+                    <h2>No result for "<%= query %>".</h2>
+                    <% } %>
+</div>
+
+
+<div class="pagination">
+    <% let currentPage=pagination.current_page; %>
+        <% let lastPage=pagination.last_visible_page; %>
+            <% let maxVisible=10; %>
+                <% let startPage=Math.max(1, currentPage - Math.floor(maxVisible / 2)); %>
+                    <% let endPage=Math.min(lastPage, startPage + maxVisible - 1); %>
+                        <% if (endPage - startPage < maxVisible - 1) { startPage=Math.max(1, endPage - maxVisible + 1);
+                            } %>
+
+                            <!-- Previous Button -->
+                            <% if (currentPage> 1) { %>
+                                <form action="/search" method="post" style="display:inline;">
+                                    <input type="hidden" name="search" value="<%= query %>">
+                                    <input type="hidden" name="page" value="<%= currentPage - 1 %>">
+                                    <button class="btn-hidden" type="submit">&laquo;</button>
+                                </form>
+                                <% } else { %>
+                                    <button class="btn-hidden" disabled>&laquo;</button>
+                                    <% } %>
+
+                                        <!-- Page Buttons -->
+                                        <% for (let i=startPage; i <=endPage; i++) { %>
+                                            <form action="/search" method="post" style="display:inline;">
+                                                <input type="hidden" name="search" value="<%= query %>">
+                                                <input type="hidden" name="page" value="<%= i %>">
+                                                <button class="btn-hidden <%= i === currentPage ? 'active' : '' %>"
+                                                    type="submit">
+                                                    <%= i %>
+                                                </button>
+                                            </form>
+                                            <% } %>
+
+                                                <!-- Next Button -->
+                                                <% if (currentPage < lastPage) { %>
+                                                    <form action="/search" method="post" style="display:inline;">
+                                                        <input type="hidden" name="search" value="<%= query %>">
+                                                        <input type="hidden" name="page" value="<%= currentPage + 1 %>">
+                                                        <button class="btn-hidden" type="submit">&raquo;</button>
+                                                    </form>
+                                                    <% } else { %>
+                                                        <button class="btn-hidden" disabled>&raquo;</button>
+                                                        <% } %>
 </div>

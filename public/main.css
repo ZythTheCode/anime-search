@@ -105,6 +105,7 @@ footer {
     margin-top: 20px;
     position: fixed;
     bottom: 0;
+    padding: 1rem 0;
 }
 
 .search-container {
@@ -138,4 +139,47 @@ footer {
 .anime-card img {
     height: 330px;
     width: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.pagination {
+    margin-bottom: 10rem;
+    font-size: 2rem;
+    display: flex;
+    justify-content: space-evenly;
+    font-weight: bold;
+}
+
+.btn-hidden {
+    background: none;
+    border: none;
+    padding: 0.5em;
+    margin: 0;                /* Optional: zero margin */
+    font: inherit;            /* Keep font consistent */
+    color: inherit;           /* Use inherited color */
+    cursor: pointer;          /* Keep clickable pointer */
+}
+
+.btn-hidden:hover {
+    text-decoration: underline;
+    background-color: #F75A5A;
+    border-radius: 50%;
+    color: #fff;              /* Optional: make text white on hover */
+}
+
+.btn-hidden:disabled {
+    color: #ccc;              /* Dim disabled buttons */
+    cursor: not-allowed;      /* Show disabled cursor */
+}
+
+.btn-hidden.active {
+    font-weight: bold;        /* Highlight current page */
+    text-decoration: underline; 
+    background-color: #f1a63b; /* Optional: highlight active page */
+    border-radius: 50%;
+    color: #fff;
 }

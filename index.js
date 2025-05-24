@@ -42,23 +42,37 @@ app.post("/search", async(req,res) => {
     const page = req.body.page;
     try {
         const searchData = await axios.get(API_URL + "/anime" + `?q=${queryAnime}&page=${page}`);
-        console.log(searchData.data.data);
+        console.log(searchData.data.pagination);
         res.render("index.ejs", {
-            searchData : searchData.data.data
+            searchData : searchData.data.data,
+            query : queryAnime,
+            pagination : searchData.data.pagination
     })
     } catch (error) {
         console.log(error.message)
     }
     
 })
-app.post("/search", async(req,res) => {
-    const queryAnime = req.body.search;
-    const page = req.body.page;
+
+app.post("/anime", async(req,res) => {
+    const animeId = req.body.animeId;
+    console.log(animeId);
     try {
-        const searchData = await axios.get(API_URL + "/anime" + `?q=${queryAnime}&page=${page}`);
-        console.log(searchData.data.data);
+        const response = await axios.get(`${API_URL}/anime/${animeId}`);
+        const searchData = response.data;
+        console.log(searchData);
         res.render("index.ejs", {
-            searchData : searchData.data.data
+            randData : searchData,
+            title : searchData.data.title,
+            image : searchData.data.images.jpg.image_url,
+            type : searchData.data.type,
+            num_ep : searchData.data.episodes,
+            duration : searchData.data.duration,
+            aired : searchData.data.aired.string,
+            status : searchData.data.status,
+            ratings : searchData.data.rating,
+            genre : searchData.data.genres,
+            desc : searchData.data.synopsis,
     })
     } catch (error) {
         console.log(error.message)
